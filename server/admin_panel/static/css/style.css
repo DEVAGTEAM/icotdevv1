@@ -1,0 +1,299 @@
+/* IcotRat Admin Panel Styles */
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    min-height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    z-index: 100;
+}
+
+#sidebar .nav-link {
+    color: #adb5bd;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    margin: 0.2rem 0;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+#sidebar .nav-link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#sidebar .nav-link.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Main Content */
+main {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+}
+
+/* Table Styles */
+.table th {
+    border-top: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #6c757d;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+    cursor: pointer;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Status Badges */
+.badge-online {
+    background-color: #28a745;
+    color: white;
+    padding: 0.25em 0.5em;
+}
+
+.badge-offline {
+    background-color: #dc3545;
+    color: white;
+    padding: 0.25em 0.5em;
+}
+
+/* Command Terminal */
+.terminal {
+    background-color: #212529;
+    color: #f8f9fa;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.terminal-input {
+    background-color: #212529;
+    color: #f8f9fa;
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    border-top: 1px solid #495057;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.terminal-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* File Explorer */
+.file-explorer {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    background-color: #fff;
+}
+
+.file-item {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.file-item:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.file-item i {
+    margin-right: 0.5rem;
+    color: #6c757d;
+}
+
+.file-item .file-size {
+    margin-left: auto;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Process List */
+.process-list {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+.process-item {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Screenshot/Webcam */
+.screenshot-container {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 0.25rem;
+}
+
+.screenshot-img {
+    max-width: 100%;
+    max-height: 500px;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Client Builder Form */
+.builder-form {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.builder-form .form-label {
+    font-weight: 500;
+}
+
+.builder-form .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+/* Custom Buttons */
+.btn-action {
+    margin-right: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+
+.btn-action:hover {
+    transform: translateY(-1px);
+}
+
+/* Modal Customization */
+.modal-content {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #f8f9fa;
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: #f8f9fa;
+}
+
+.modal .nav-tabs .nav-link {
+    color: #495057;
+    border: none;
+}
+
+.modal .nav-tabs .nav-link.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #sidebar {
+        min-height: auto;
+        position: relative;
+        width: 100%;
+    }
+    
+    main {
+        margin-left: 0;
+    }
+    
+    .card-deck {
+        display: block;
+    }
+    
+    .screenshot-img {
+        max-height: 300px;
+    }
+    
+    .file-explorer,
+    .process-list,
+    .terminal {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-action {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+}

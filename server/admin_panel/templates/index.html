@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IcotRat - Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h3 class="text-light">IcotRat</h3>
+                        <p class="text-muted">Admin Panel</p>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#dashboard" data-bs-toggle="tab">
+                                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#clients" data-bs-toggle="tab">
+                                <i class="fas fa-laptop me-2"></i> Clients
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#builder" data-bs-toggle="tab">
+                                <i class="fas fa-cogs me-2"></i> Client Builder
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#settings" data-bs-toggle="tab">
+                                <i class="fas fa-sliders-h me-2"></i> Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="tab-content" id="main-content">
+                    <!-- Dashboard Tab -->
+                    <div class="tab-pane fade show active" id="dashboard">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Dashboard</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="refresh-dashboard">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Stats Cards -->
+                        <div class="row mb-4">
+                            <div class="col-md-3 mb-4">
+                                <div class="card bg-primary text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="text-uppercase">Total Clients</h6>
+                                                <h1 class="display-4" id="total-clients">0</h1>
+                                            </div>
+                                            <i class="fas fa-users fa-3x opacity-50"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="card bg-success text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="text-uppercase">Online Clients</h6>
+                                                <h1 class="display-4" id="online-clients">0</h1>
+                                            </div>
+                                            <i class="fas fa-plug fa-3x opacity-50"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="card bg-warning text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="text-uppercase">Commands Sent</h6>
+                                                <h1 class="display-4" id="commands-sent">0</h1>
+                                            </div>
+                                            <i class="fas fa-terminal fa-3x opacity-50"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <div class="card bg-danger text-white h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="text-uppercase">Files Transferred</h6>
+                                                <h1 class="display-4" id="files-transferred">0</h1>
+                                            </div>
+                                            <i class="fas fa-file-download fa-3x opacity-50"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activity -->
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Recent Activity</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Time</th>
+                                                        <th>Client</th>
+                                                        <th>Action</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="activity-log">
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">No recent activity</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Clients Tab -->
+                    <div class="tab-pane fade" id="clients">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Clients</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="refresh-clients">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Clients Table -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Hostname</th>
+                                                <th>IP Address</th>
+                                                <th>OS</th>
+                                                <th>Username</th>
+                                                <th>Status</th>
+                                                <th>First Seen</th>
+                                                <th>Last Seen</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="clients-table">
+                                            <tr>
+                                                <td colspan="9" class="text-center">No clients connected</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Client Detail Modal -->
+                    <div class="modal fade" id="clientDetailModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="clientDetailTitle">Client Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="nav nav-tabs" id="clientDetailTabs" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">System Info</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="files-tab" data-bs-toggle="tab" data-bs-target="#files" type="button" role="tab">File Explorer</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="processes-tab" data-bs-toggle="tab" data-bs-target="#processes" type="button" role="tab">Processes</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="shell-tab" data-bs-toggle="tab" data-bs-target="#shell" type="button" role="tab">Shell</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="screenshot-tab" data-bs-toggle="tab" data-bs-target="#screenshot" type="button" role="tab">Screenshot</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="clientDetailTabContent">
+                                        <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                            <div class="mt-3" id="system-info">
+                                                <!-- System info content will be loaded dynamically -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="files" role="tabpanel">
+                                            <div class="mt-3">
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" id="file-path" placeholder="Enter path...">
+                                                    <button class="btn btn-primary" type="button" id="navigate-path">Go</button>
+                                                </div>
+                                                <div id="file-explorer">
+                                                    <!-- File explorer content will be loaded dynamically -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="processes" role="tabpanel">
+                                            <div class="mt-3">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>PID</th>
+                                                                <th>Name</th>
+                                                                <th>CPU</th>
+                                                                <th>Memory</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="process-list">
+                                                            <!-- Process list will be loaded dynamically -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="shell" role="tabpanel">
+                                            <div class="mt-3">
+                                                <div class="card">
+                                                    <div class="card-body" id="shell-output" style="height: 300px; overflow-y: auto; background: #000; color: #fff;"></div>
+                                                    <div class="card-footer">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="shell-input" placeholder="Enter command...">
+                                                            <button class="btn btn-primary" type="button" id="execute-shell">Execute</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="screenshot" role="tabpanel">
+                                            <div class="mt-3">
+                                                <button class="btn btn-primary mb-3" id="capture-screenshot">Capture Screenshot</button>
+                                                <div id="screenshot-container">
+                                                    <!-- Screenshot will be loaded dynamically -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Client Builder Tab -->
+                    <div class="tab-pane fade" id="builder">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Client Builder</h1>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="builder-form">
+                                    <div class="mb-3">
+                                        <label for="host" class="form-label">Host</label>
+                                        <input type="text" class="form-control" id="host" placeholder="Enter host IP/domain">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="port" class="form-label">Port</label>
+                                        <input type="number" class="form-control" id="port" placeholder="Enter port">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="filename" class="form-label">Output Filename</label>
+                                        <input type="text" class="form-control" id="filename" placeholder="client.exe">
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="persistence">
+                                            <label class="form-check-label" for="persistence">
+                                                Enable Persistence
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Generate Client</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div class="tab-pane fade" id="settings">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Settings</h1>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <form id="settings-form">
+                                    <div class="mb-3">
+                                        <label for="refresh-interval" class="form-label">Refresh Interval (seconds)</label>
+                                        <input type="number" class="form-control" id="refresh-interval" value="5">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="log-limit" class="form-label">Activity Log Limit</label>
+                                        <input type="number" class="form-control" id="log-limit" value="100">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

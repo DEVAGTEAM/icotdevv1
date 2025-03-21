@@ -1,0 +1,15 @@
+# Server dependencies
+flask==2.3.3
+flask-socketio==5.3.4
+pycryptodome==3.18.0
+colorlog==6.7.0
+pyinstaller==5.13.0
+
+# Client dependencies
+requests==2.31.0
+pillow==10.0.0
+pynput==1.7.6
+psutil==5.9.5
+py-cpuinfo==9.0.0
+pywin32==306; sys_platform == 'win32'
+pyautogui==0.9.54
